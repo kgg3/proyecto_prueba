@@ -1,0 +1,39 @@
+<html>
+<head> 
+    <title>Buscador Personas</title> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="controlador.js"></script>
+</head>
+<body>
+    <div ng-app="buscadorPersonas" ng-controller="buscadorPersonasCtrl">
+	  <p>
+		  Buscador Personas: 
+		  <label for="filtroOrden"> Filtrar por:</label>
+		  <select name="filtroOrden" id="filtroOrden" ng-model="filtroCampo" ng-change="buscarPersonas(literalBusqueda)">
+		    <option ng-repeat="filtro in filtrosCampo" ng-value="filtro.codigo">{{filtro.literal}}</option>
+		  </select>
+		  <input type="text" ng-model="literalBusqueda" ng-change="buscarPersonas(literalBusqueda)">
+	  </p>
+	  
+	  <label for="filtroOrden"> Ordenar por:</label>
+	  <select name="filtroOrden" id="filtroOrden" ng-model="filtroOrden" ng-change="cambioOrden(filtroOrden)">
+	    <option ng-repeat="filtro in filtros" ng-value="filtro.codigo">{{filtro.literal}}</option>
+	  </select>
+
+	  <h1 ng-if="listaPersonas.length > 0">Hello {{listaPersonas[0].nombre}}</h1>
+	  <table ng-if="listaPersonas.length > 0">
+	  	<tr>
+	  		<td>Nombre</td>
+	  		<td>Apellido</td>
+	  		<td>30</td>
+	  	</tr>
+	  	<tr ng-repeat="persona in listaPersonas">
+	  		<td>{{persona.nombre}}</td>
+	  		<td>{{persona.apellido}}</td>
+	  		<td>{{persona.edad}}</td>
+	  	</tr>
+	  </table>
+	</div>
+</body>
+</html>
